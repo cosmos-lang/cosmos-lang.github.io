@@ -21,10 +21,6 @@ As a logic programming language, Cosmos allows programming using relations. Unli
 | x=2
 ```
 
-It's possible to fall back from relational programming. The keyword `fun` essentially turns a relation into a regular programming function.
-
-Cosmos supports a variety of styles from functional to plain imperative programming. 
-
 See below.
 
 Documentation
