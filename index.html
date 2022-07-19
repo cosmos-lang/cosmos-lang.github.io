@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cosmos</title>
+  </head>
+  <body>
+	<nav>
+  <a href="/index.html">Home</a>
+  <a href="/blog.html">News</a>
+  <a href="/download.html">Download</a>
+</nav>
+    <h2 id="introduction">Introduction</h2>
+
+<p>Cosmos is a modern logic scripting language with a simple syntax.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">rel</span> <span class="nx">main</span><span class="p">()</span>
+    <span class="nx">x</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">read</span><span class="p">()</span>
+    <span class="nx">io</span><span class="p">.</span><span class="nx">writeln</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello, </span><span class="dl">"</span><span class="o">+</span><span class="nx">x</span><span class="o">+</span><span class="dl">'</span><span class="s1">!</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Cosmos combines features from functional (including type checking), object-oriented and even logic programming.</p>
+
+<h2 id="relational-programming">Relational programming</h2>
+
+<p>As a logic programming language, Cosmos allows programming using relations. Unlike functions, relations may yield multiple results.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nx">x</span><span class="o">=</span><span class="mi">1</span> <span class="nx">or</span> <span class="nx">x</span><span class="o">=</span><span class="mi">2</span>
+<span class="o">|</span> <span class="nx">x</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">|</span> <span class="nx">x</span><span class="o">=</span><span class="mi">2</span>
+</code></pre></div></div>
+
+<p>It’s possible to fall back from relational programming. The keyword <code class="language-plaintext highlighter-rouge">fun</code> essentially turns a relation into a regular programming function.</p>
+
+<p>Cosmos is not an opinionated language and supports a variety of styles from functional to plain imperative programming.</p>
+
+<p>See below.</p>
+
+<h2 id="documentation">Documentation</h2>
+
+<p>See the <a href="https://mcsoto.github.io/cosmos-lang/quickstart.html">Quickstart</a> or the full <a href="https://mcsoto.github.io/cosmos-lang/guide.html">Guide</a>*.</p>
+
+<p>The guide is meant to be more comprehensive and eventually provide a full documentation of the language. It may still need some proof-reading. The Quickstart is a quicker intro that assumes you have prior experience with procedural or functional languages.</p>
+
+<h2 id="download">Download</h2>
+
+<p>See the <a href="https://mcsoto.github.io/cosmos-lang/download.html">Download</a> section.</p>
+
+<h2 id="other">Other</h2>
+
+<ul>
+  <li>
+    <p><a href="https://mcsoto.github.io/cosmos-lang/comp.html">Comparison to Prolog, etc.</a></p>
+  </li>
+  <li>
+    <p><a href="https://mcsoto.github.io/cosmos-lang/quickstart2.html">A few more notes (Quickstart 2.0)</a></p>
+  </li>
+</ul>
+
+  </body>
+</html>

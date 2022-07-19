@@ -1,0 +1,332 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cosmos</title>
+  </head>
+  <body>
+	<nav>
+  <a href="/index.html">Home</a>
+  <a href="/blog.html">News</a>
+  <a href="/download.html">Download</a>
+</nav>
+    <h2 id="interpreter">Interpreter</h2>
+<p>You can try out the language by opening the interpreter and making <em>queries</em> to the language.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cosmos -i
+&gt; x=1
+| x = 1
+&gt; x=1 or 2=x
+| x = 1
+| x = 2
+</code></pre></div></div>
+
+<h2 id="writing-a-file">Writing a file</h2>
+
+<p>Make a file <code class="language-plaintext highlighter-rouge">hello.co</code> with the content,</p>
+
+<p><code class="language-plaintext highlighter-rouge">print('hello world')</code></p>
+
+<p>The file can be loaded with the <code class="language-plaintext highlighter-rouge">-l</code> flag.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cosmos -l hello
+'hello world'`
+</code></pre></div></div>
+
+<h2 id="relations">Relations</h2>
+
+<p>Instead of functions, Cosmos has relations.</p>
+
+<p>They’re made using the <code class="language-plaintext highlighter-rouge">rel</code> keyword.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//note that the there is no 'return' in the definition</span>
+<span class="c1">//instead, the parameter y is explicit</span>
+<span class="c1">//this is typically the 'output' parameter</span>
+<span class="nx">rel</span> <span class="nx">double</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span>
+    <span class="nx">y</span> <span class="o">=</span> <span class="nx">x</span><span class="o">*</span><span class="mi">2</span>
+
+<span class="nx">double</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="nx">x</span><span class="p">)</span> <span class="c1">//x is 8</span>
+</code></pre></div></div>
+
+<p>Whereas functions have one output, relations may have zero, one or more outputs. You can check this by making queries at the interpreter.</p>
+
+<pre><code class="language-$">cosmos -i
+&gt; x=1 or x=2 //this query has two answers (outputs)
+| x = 1
+| x = 2
+</code></pre>
+
+<p>If the system picks one answer and it turns out to be invalid, the system will backtrack and pick the other.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">rel</span> <span class="nx">p</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+    <span class="nx">x</span><span class="o">=</span><span class="mi">1</span> <span class="nx">or</span> <span class="nx">x</span><span class="o">=</span><span class="mi">2</span>
+    
+<span class="nx">rel</span> <span class="nx">main</span><span class="p">()</span>
+	<span class="nx">p</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+	<span class="nx">x</span><span class="o">!=</span><span class="mi">1</span>
+	<span class="nx">io</span><span class="p">.</span><span class="nx">writeln</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="c1">//2</span>
+</code></pre></div></div>
+
+<p>Relations may adopt function syntax. This lets relations be nested.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">double</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="nx">x</span><span class="p">)</span> <span class="c1">//logic syntax</span>
+<span class="nx">x</span><span class="o">=</span><span class="nx">double</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1">//function syntax</span>
+<span class="nx">print</span><span class="p">(</span><span class="nx">double</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="c1">//this will print 6</span>
+</code></pre></div></div>
+
+<p>Logic-wise, <code class="language-plaintext highlighter-rouge">double(4,x)</code> is read as a statement: “the double of 4 is x”.</p>
+
+<p><code class="language-plaintext highlighter-rouge">double(4)</code> reads as “the double of 4”.</p>
+
+<h2 id="first-class-relation">First-class relation</h2>
+
+<p>Relations are first-class values. It’s possible to define a relation within another.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rel p(x)
+    rel temp(x)
+        x = 2
+    temp(x)
+    
+p(x) //x is 2
+</code></pre></div></div>
+<p>Alternatively:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rel p(x)
+    temp = rel(x)
+        x = 2
+    temp(x)
+</code></pre></div></div>
+
+<h2 id="functors">Functors</h2>
+
+<p>Functors are composite data.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>functor(F, Functor) //declares an object for creating functors
+x = F(1, 2) //x is assigned to a functor F composed by the values 1 and 2
+x = F(1, a) //uses pattern matching to match F(1, 2) against F(1, a)
+print(a) //2
+</code></pre></div></div>
+<p>The special relation <em>functor</em> is used to declare F as an object for making functors.</p>
+
+<p>Lists are syntax sugar for the functor Cons. Here are two ways to define a list:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>l = [1, 2]
+l = Cons(1, Cons(2, Cons))
+</code></pre></div></div>
+
+<p>Relations such as <em>first</em>, <em>map</em> and <em>filter</em> can be used to manipulate lists.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>l = [1,2,3]
+list.first(l, head) //head is 1
+list.rest(l, tail) //tail is [2, 3]
+list.map(l, math.inc, l2) //l2 is [2, 3, 4]
+list.map(l3, math.inc, l) //l3 is [0, 1, 2]
+list.filter(l, rel(x) x!=3;, l4) //l4 is [1, 2]
+</code></pre></div></div>
+
+<h2 id="immutability">Immutability</h2>
+
+<p>Variables are immutable. Instead of modifying a value we create a new one.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>l2 = list.push(l, 55) //instead of modifying l, we create a new variable l2
+io.writeln(l)  //[1, 2, 3]
+io.writeln(l2) //[1, 2, 3, 55]
+</code></pre></div></div>
+
+<p>Cosmos adopts many principles and features that are common in functional programming languages (although the principles apply to <em>relations</em> rather than <em>functions</em>).</p>
+
+<h2 id="types">Types</h2>
+
+<p>Cosmos manages a balance between strictness and non-strictness. Writing the type of a variable is (almost always) optional.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">Integer</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">7</span>
+    <span class="nx">Real</span> <span class="nx">x</span> <span class="o">=</span> <span class="mf">5.2</span>
+    <span class="nb">String</span> <span class="nx">s</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">abc</span><span class="dl">'</span>
+    <span class="nx">z</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1">//z is implied to be an Integer</span>
+    <span class="nx">Functor</span> <span class="nx">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="nx">functor</span><span class="p">(</span><span class="nx">F</span><span class="p">,</span> <span class="nx">Functor</span><span class="p">)</span>
+    <span class="nx">Functor</span> <span class="nx">f</span> <span class="o">=</span> <span class="nx">F</span><span class="p">(</span><span class="dl">'</span><span class="s1">apple</span><span class="dl">'</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The type system supports <em>composite types</em>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Functor String Number f2 = F('apple', 2)
+</code></pre></div></div>
+<p><em>Functor String Number</em> is a composite type that accepts any functor whose first element is a string and second is a number.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Relation Any Any p = double
+</code></pre></div></div>
+<p>Relations get composite types. <em>Relation Any Any</em> is a type that accepts any relation with exactly two arguments.</p>
+
+<h2 id="tables">Tables</h2>
+
+<p>Tables (also known as maps, dictionaries, etc.) are structures that map keys to values.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Table</span> <span class="nx">t</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">=</span><span class="mi">1</span> <span class="nx">and</span> <span class="nx">y</span><span class="o">=</span><span class="mi">2</span><span class="p">}</span>
+<span class="nx">table</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">t2</span><span class="p">)</span>
+
+<span class="nx">print</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="c1">//{'x': 1, 'y': 2}</span>
+<span class="nx">print</span><span class="p">(</span><span class="nx">t2</span><span class="p">)</span> <span class="c1">//{'x': 1, 'y': 2, 'a': 1}</span>
+</code></pre></div></div>
+
+<h2 id="making-a-module">Making a module</h2>
+
+<p>Cosmos files are typically given the .co extension.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//x.co</span>
+<span class="nx">rel</span> <span class="nx">p</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+    <span class="nx">x</span><span class="o">=</span><span class="mi">2</span>
+	
+<span class="nx">t</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="dl">'</span><span class="s1">p</span><span class="dl">'</span> <span class="o">=</span> <span class="nx">p</span>
+<span class="p">}</span>
+<span class="k">export</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span>
+</code></pre></div></div>
+<p>As we have mentioned, Cosmos is in part inspired by imperative scripting languages–specifically, prototypal ones.</p>
+
+<p>The principle is thus the same. The relation <code class="language-plaintext highlighter-rouge">p</code> is inserted into a table, which is then exported.</p>
+
+<p>This could’ve been written as,</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//x.co</span>
+<span class="nx">t</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="nx">rel</span> <span class="nx">p</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+		<span class="nx">x</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">}</span>
+<span class="k">export</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We then use the special relation <code class="language-plaintext highlighter-rouge">require</code>,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require('x', x)
+x.p(2)
+print(x) //2
+</code></pre></div></div>
+
+<h2 id="whitespace">Whitespace</h2>
+
+<p>The language is whitespace sensitive.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rel p(x)
+    x!=1
+    x&lt;5
+</code></pre></div></div>
+<p>This could be a single line.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rel p(x) x!=1 and x&lt;5;
+</code></pre></div></div>
+<p>It’s possible to drop the whitespace semantics by writing the unnecessary characters, although this is not generally advisable.</p>
+
+<p>Note that statements are separated by <em>ands</em> (semicolons are only used to end the indendation).</p>
+
+<h2 id="booleans">Booleans</h2>
+
+<p>There is no boolean type. Instead, relations themselves are “booleans”.</p>
+
+<h2 id="using-cases">Using cases</h2>
+
+<p>As you may have noted, <code class="language-plaintext highlighter-rouge">and/or</code> is a huge part of the language. Hence, there are many operators that are shorthand for <code class="language-plaintext highlighter-rouge">and/or</code>. One of them is <code class="language-plaintext highlighter-rouge">case</code> (alias: <code class="language-plaintext highlighter-rouge">cond</code>).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>case
+	s = 'a'
+case
+	s = 'b'
+	x = 1
+case
+	x = 2
+</code></pre></div></div>
+<p>This is sugar for,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(s = 'a') or (s = 'b' and x = 1) or x = 2
+</code></pre></div></div>
+
+<h2 id="operators">Operators</h2>
+
+<p>A similar operator is <code class="language-plaintext highlighter-rouge">when</code>. <code class="language-plaintext highlighter-rouge">when</code> is simply a more imperative-looking form of <em>case</em>.</p>
+
+<p>Take a simple case-statement,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>case
+	s = 'a'
+	x = 1
+case
+	s = 'b'
+</code></pre></div></div>
+
+<p>This could be written as,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>when(s = 'a')
+	x = 1
+else
+	x = 'b'
+</code></pre></div></div>
+
+<p>As you can see, this reads somewhat like an if-statement. <code class="language-plaintext highlighter-rouge">x=1</code> will be read when <code class="language-plaintext highlighter-rouge">s = 'a'</code> is true, and otherwise <code class="language-plaintext highlighter-rouge">x = 'b'</code> will be the case. While this makes sense if given a procedural reading, note that the condition is redundant.</p>
+
+<p>After all, the case-statement did not need a condition. Furthermore,</p>
+
+<p>That’s why the actual if-statement and favoured conditional of the language is as follows.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if(s = 'a')
+	x = 0
+else
+	x = 2
+</code></pre></div></div>
+
+<p>This is equivalent to,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(s = 'a' and x = 0) or (s != 'a' and x = 2)
+</code></pre></div></div>
+
+<p>Note that the condition is negated. This is therefore the favoured conditional.</p>
+
+<p>The downside of this is that more complex conditions may not be accepted by the compiler.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if(p(x))
+	x=1
+else
+	x=2
+</code></pre></div></div>
+
+<h2 id="negation-is-complicated">Negation is complicated</h2>
+
+<p>The condition this time is p(x). How do we negate an arbitrary relation like p(x)? All the while keeping the code logically pure?</p>
+
+<p>As is known by now, the first logic programming language implemented negation in a very naive way. The result is that you could not be sure your code was sound and the operator is deprecated to this day.</p>
+
+<p>Cosmos’ philosophy is that if logically pure code is not supported, the compiler will give an error.</p>
+
+<p>This may not seem like much, but it means you are free to use operators without worrying. When operators could affect the rest of the code in unseen ways before, this is an important change. It is much closer to the goal of “programming in logic”.</p>
+
+<p>As the main conditional operator of the language, <em>if</em> is guaranteed to be a logically sound conditional, or, if it can’t do that, an error will occur.</p>
+
+<h2 id="if-vs-when">if vs when</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>when(p(x))
+	x=1
+else
+	x=2
+</code></pre></div></div>
+
+<p>One way out of this is to replace <code class="language-plaintext highlighter-rouge">if</code> with the similar operator <code class="language-plaintext highlighter-rouge">when</code>. This is sugar for,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(p(x) and x = 1) or (x = 2)
+</code></pre></div></div>
+
+<p>Note that the condition is kind of redundant. It does not negate the condition. As noted, this is a bit misleading since it still uses the ‘else’ keyword. It’s simply a more procedural-looking version way of writing ‘case’.</p>
+
+<p>However, it evaluates to pure code. If used properly, then, it will not make code unsound.</p>
+
+<p>Furthermore, it can be easily switched with <code class="language-plaintext highlighter-rouge">if</code> (or <code class="language-plaintext highlighter-rouge">choose</code>) if there is a need to.</p>
+
+<p>In conclusion, if you do not need to negate the condition (or you want to do so manually) <code class="language-plaintext highlighter-rouge">when</code> is an operator you can use.</p>
+
+<h2 id="impure-operators">Impure operators</h2>
+
+<p>While Cosmos puts emphasis on pure code, it may not be possible to avoid resorting to impure operators (specially in the language’s current state).</p>
+
+<p>These are not the worse LP has to offer (in fact, Prolog often calls them <em>soft-cut</em>, as they are mild versions of the <em>cut</em> operator), but the following operators are not completely pure:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//this is a conditional that will 'choose' one of the options without much concern for purity
+choose(p(x))
+	x=1
+else
+	x=2
+
+//this will only select the first answer given by p(x)
+once p(x)
+</code></pre></div></div>
+
+  </body>
+</html>
