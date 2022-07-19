@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cosmos</title>
+  </head>
+  <body>
+	<nav>
+  <a href="/index.html">Home</a>
+  <a href="/blog.html">News</a>
+  <a href="/download.html">Download</a>
+</nav>
+    <h1>Declarative for-statements</h1>
+<!--<p>20 Aug 2018</p>-->
+
+<p>With the latest update, we introduce a long-awaited, revolutionary feature… for-statements!</p>
+
+<h2 id="why">Why?</h2>
+
+<p>From the beginning, our goal was a language that can be programmed using multiple <em>styles</em>. These styles are different from the <em>paradigm/semantics</em> used.</p>
+
+<p>That is, you may program in an imperative style– even if the code is declarative.</p>
+
+<p>This gets us closer to our envisioned language.</p>
+
+<p>First, let’s introduce <em>pseudo-imperative programming</em>.</p>
+
+<h2 id="pseudo-imperative-programming">Pseudo-imperative programming</h2>
+
+<p>Cosmos is a logic programming language, yet we want to do imperative programming. Hence, we use the pseudo-imperative operator, <code class="language-plaintext highlighter-rouge">!</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!x=x+1
+</code></pre></div></div>
+
+<p>This is akin to writing,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x2=x1+1
+</code></pre></div></div>
+
+<p>You’ll note that we use the operator <code class="language-plaintext highlighter-rouge">!</code>. This indicates that we should read the code imperatively– in any imperative language, <code class="language-plaintext highlighter-rouge">!x=x+1</code> increases the value of x by 1.</p>
+
+<p>This is, however, shorthand for declarative code. For this reason, we do not then consider it to be actual imperative programming.</p>
+
+<p>This can be seen in the following code.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fun p(x)
+	!x=x+1
+	print(x) //2
+x=1 and p(x)
+print(x) //1
+</code></pre></div></div>
+
+<p>We can freely alter the value that the alias <em>x</em> refers to within a given relation or function. This lets us think imperatively and still get a declarative result.</p>
+
+<p>Even though it’s an imperative pattern, it’s by any metric declarative, hence pseudo-imperative.</p>
+
+<h2 id="a-for-statement">A for-statement</h2>
+
+<p>Now that this has been settled, we can make our for-statement.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for(x=1;x&lt;=3;!x=x+1;)
+	print(x) //1, 2, 3
+</code></pre></div></div>
+
+<p>Except for a ! operator, this looks exactly like a classical for-statement from an imperative language! We could not get any closer. This is of course, on purpose. We were not pleased with most attempts to emulate imperative programming in functional languages, as they are often much more complicated syntactically. To our knowledge, the language Mercury comes closest to what we wanted with a similar operator.</p>
+
+<h2 id="why-not-just-a-for-each">Why not just a for-each?</h2>
+
+
+  </body>
+</html>
