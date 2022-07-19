@@ -316,7 +316,7 @@ Note that the condition is negated. This is therefore the favoured conditional.
 Negation is complicated
 ---
 
-When making a relation, we recommend keeping it to simple conditions like `x=1` or `5>x`.
+When making a conditional, we recommend keeping it to simple conditions like `x=1` or `5>x`.
 
 Let's see an example of a more complex condition.
 
