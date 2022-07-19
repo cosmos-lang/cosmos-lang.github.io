@@ -12,7 +12,7 @@ The syntax compares well to common scripting languages.
 
 Cosmos is a good general-purpose _scripting language_. It fares well for scripts, prototyping or high-level applications.
 
-Many languages nowadays are becoming overly complex and opinionated. Cosmos is an alternative to those; it strives to go back to what scripting languages were known for. 
+Many languages nowadays are becoming overly complex and opinionated. Cosmos strives to go back to what scripting languages were known for. It's simple and allows for many styles of programming.
 
 _As a functional language_
 
@@ -54,6 +54,7 @@ The philosophy of the Cosmos programming language can be summed in a few precept
 Of course, those precepts are weighted against each other.
 
 _Exploratory
+
 _Familiarity_
 
 Cosmos is ultimately an experimental language. It's a logic language, after all.
@@ -70,7 +71,7 @@ This applies specially to naming- when naming a function, we try to pick the nam
 
 _Minimalism_
 
-"Make it simple, but not simpler."
+"Make it simple, but not simpler." - Vonn Neumann
 
 The above quote quite describes a minimalist philosophy. Many languages are full of multiple syntaxes and operators- even if do we have some syntax sugar, we can hardly measure to our competition.
 
