@@ -283,11 +283,14 @@ else
 	x = 'b'
 ```
 
-As you can see, this reads somewhat like an if-statement. `x=1` will be read when `s = 'a'` is true, and otherwise `x = 'b'` will be the case. While this makes sense if given a procedural reading, note that the condition is redundant.
+As you can see, this reads somewhat like an if-statement. `x=1` will be read when `s = 'a'` is true, and otherwise `x = 'b'` will be the case. 
 
-After all, the case-statement did not need a condition. Furthermore, 
+Note that the condition is kind of redundant. After all, the case-statement does not need a condition. Same for an else-clause. As this is simply a more procedural-looking version way of writing 'case', it's not quite a proper conditional.
 
 That's why the actual if-statement and favoured conditional of the language is as follows.
+
+Conditional
+---
 
 ```
 if(s = 'a')
@@ -299,12 +302,23 @@ else
 This is equivalent to,
 
 ```
+(s = 'a' and x = 0) or (not s = 'a' and x = 2)
+```
+
+Or,
+
+```
 (s = 'a' and x = 0) or (s != 'a' and x = 2)
 ```
  
 Note that the condition is negated. This is therefore the favoured conditional. 
 
-The downside of this is that more complex conditions may not be accepted by the compiler.
+Negation is complicated
+---
+
+When making a relation, we recommend keeping it to simple conditions like `x=1` or `5>x`.
+
+Let's see an example of a more complex condition.
 
 ```
 if(p(x))
@@ -313,56 +327,37 @@ else
 	x=2
 ```
 
-Negation is complicated
----
-
 The condition this time is p(x). How do we negate an arbitrary relation like p(x)? All the while keeping the code logically pure?
 
-As is known by now, the first logic programming language implemented negation in a very naive way. The result is that you could not be sure your code was sound and the operator is deprecated to this day.
+This can be done, however, it may be somewhat wasteful or experimental. The relation may be called twice, or delayed, so as to ensure the code is sound. This may not be what you want.
 
-Cosmos' philosophy is that if logically pure code is not supported, the compiler will give an error.
+A few ways out of this are,
 
-This may not seem like much, but it means you are free to use operators without worrying. When operators could affect the rest of the code in unseen ways before, this is an important change. It is much closer to the goal of "programming in logic".
-
-As the main conditional operator of the language, _if_ is guaranteed to be a logically sound conditional, or, if it can't do that, an error will occur.
-
-if vs when
----
-```
-when(p(x))
-	x=1
-else
-	x=2
-```
-
-One way out of this is to replace `if` with the similar operator `when`. This is sugar for,
-
+- Replace `if` with the similar operator `when`. This can be done if you do not need to negate the condition (or you want to do so manually).
+- Simply keep it as-is. _if_ is guaranteed to be a logically sound conditional.
+- Switch to a function.
 
 ```
-(p(x) and x = 1) or (x = 2)
+fun main(x)
+	if(p(x))
+		x=1
+	else
+		x=2
+main(2)
 ```
 
-Note that the condition is kind of redundant. It does not negate the condition. As noted, this is a bit misleading since it still uses the 'else' keyword. It's simply a more procedural-looking version way of writing 'case'.
+When encased in a function, _if_ behaves as an imperative conditional. It will not do any _backtracking_ or _non-determinism_.
 
-However, it evaluates to pure code. If used properly, then, it will not make code unsound.
-
-Furthermore, it can be easily switched with `if` (or `choose`) if there is a need to.
-
-In conclusion, if you do not need to negate the condition (or you want to do so manually) `when` is an operator you can use.
+This feature is currently not checked. It'll work correctly as long as you write a proper function, but this in itself is not checked. We may switch to giving more proper checks in the future.
 
 Impure operators
 ---
 
-While Cosmos puts emphasis on pure code, it may not be possible to avoid resorting to impure operators (specially in the language's current state).
+Our use of functions is meant to be an improvement over Prolog's _negation-by-failure_. Instead of simply writing impure code, one may encase it in functions-- a much more readable abstraction. This is a smoother way to fall back from logic programming.
 
-These are not the worse LP has to offer (in fact, Prolog often calls them _soft-cut_, as they are mild versions of the _cut_ operator), but the following operators are not completely pure:
+We also provide an _once_ keyword.
+
 ```
-//this is a conditional that will 'choose' one of the options without much concern for purity
-choose(p(x))
-	x=1
-else
-	x=2
-
 //this will only select the first answer given by p(x)
 once p(x)
 ```
