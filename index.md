@@ -50,3 +50,5 @@ Other
 - [Comparison to Prolog, etc.](https://mcsoto.github.io/cosmos-lang/comp.html)
 
 - [A few more notes (Quickstart 2.0)](https://mcsoto.github.io/cosmos-lang/quickstart2.html)
+
+- [t](/phil) [t](/phil.html) [t](/phil.md)
