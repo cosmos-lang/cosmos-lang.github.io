@@ -361,3 +361,27 @@ We also provide an _once_ keyword.
 //this will only select the first answer given by p(x)
 once p(x)
 ```
+
+Pseudo-imperative Programming
+--
+
+As Cosmos was made to explore declarative programming, where data is immutable, it's not truly imperative. However, procedural-style programming is possible using the pseudo-imperative operator, `!`. (Like functions, this feature is in-development.)
+
+```
+!x=x+1
+```
+
+This is akin to writing,
+
+```
+x2=x1+1
+```
+
+The operator indicates that the alias _x_ is changed to a different value in the current relation.
+
+This allows us to make _for_ and _while_ statements!
+
+```
+for(x=1;x<=3;!x=x+1;)
+	print(x) //1, 2, 3
+```
