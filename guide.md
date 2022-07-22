@@ -177,7 +177,9 @@ Arithmetics
 Constraint Arithmetics
 ---
 
-Cosmos interprets arithmetic statements as constraints. We consider this to be a step further in our exploration of logic programming as even constraint languages often have classical arithmetics as its default system, which one would think is odd in a LP language as it's practically asking users to make  programs that are incorrect logic-wise. Even programs that use arithmetic are thus logically sound _by default_ and without need of loading a Constraint Logic Programming (CLP) library.
+Cosmos interprets arithmetic statements as constraints. We consider this to be a step further in our exploration of logic programming as even constraint languages often have classical arithmetics as its default system. One would think it is odd for a LP language to have classical, non-logical arithmetics, as it's practically asking users to make  programs that are incorrect logic-wise.
+
+Programs that use arithmetic are thus logically pure _by default_ in Cosmos.
 
 ```
 $ cosmos -i
