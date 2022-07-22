@@ -12,7 +12,7 @@
 - 2C. Operators
 4. Optimizations
 
-### 1. Syntax
+# 1. Syntax
 
 Syntax
 ---
@@ -20,11 +20,10 @@ Syntax
 |Syntax |Output
 --- | --- |
 |`#str`|`size(str)`
-|`t.x`|`table.get(t,x)`|
-|`t['x']`|`table.get(t,x)`|
-|`t.x:2`|`table.set(t,x,2)`|
-|`:f(2)`|functor|
---
+|`t.x`|`table.get(t,x)`
+|`t['x']`|`table.get(t,x)`
+|`t.x:2`|`table.set(t,x,2)`
+|`:f(2)`|functor
 
 |Types | Data
 --- | --- |
@@ -36,9 +35,9 @@ Syntax
 
 |Operators| 
 --- | --- |
-|`and,or`|
-|`if,when,choose`|
-|`not,once`|
+|`and,or`
+|`if,when,choose`
+|`not,once`
 
 |Arithmetic Operators |
 --- | 
@@ -48,13 +47,14 @@ Syntax
 |Conversion (casting)|
 --- | 
 |`str`
+|`int`
 |`num, real`
 
 Lexicon
 ---
 Syntax: a language's grammar.
 
-### 2. Using the Language
+# 2. Using the Language
 
 Installation
 ---
@@ -153,7 +153,7 @@ y=2
 
 ... is the same as ...
 
-x=1 and y=2
+`x=1 and y=2`
 
 Data types
 --
@@ -174,7 +174,36 @@ Comments
 Arithmetics
 ---
 
-Often, the user may want to force a variable that may not be fully instantiated to be displayed to the user. This is done with the special functions _int_ and _str_.
+Constraint Arithmetics
+---
+
+Cosmos interprets arithmetic statements as constraints. We consider this to be a step further in our exploration of logic programming as even constraint languages often have classical arithmetics as its default system, which one would think is odd in a LP language as it's practically asking users to make  programs that are incorrect logic-wise. Even programs that use arithmetic are thus logically sound _by default_ and without need of loading a Constraint Logic Programming (CLP) library.
+
+```
+$ cosmos -i
+> x=1+y
+| x = 1+y
+> x>5
+| x > 5
+```
+
+_What is a constraint?_
+
+A regular language would have _x>5_ or _y+1_ simply fail. In those cases, it doesn't know the value of x or y. It wouldn't then be able to solve those equations.
+
+Cosmos gives those the same treatment as equality; they're simply taken as true until proven wrong. Such statements are stored as _constraints_.
+
+There are many known constraint systems. However, most would not work well as the default arithmetics. CLP(FD) is limited to integers which would mean users couldn't use floating-point numbers at all. Thus, Cosmos uses CLP for Reals[1].
+
+However, one can use other systems by calling the host language.
+
+[1] As far as we know, CLP for Reals goes back to Prolog III. See http://prolog-heritage.org/en/ph30.html.
+
+_What should I worry about?_
+
+It's possible to force a variable that may not be fully instantiated to be displayed to the user. This is done with special functions like _int_ and _str_.
+
+This is akin to _casting_ in procedural languages.
 
 `x = int(2+1*4/2)`
 
@@ -197,50 +226,12 @@ print(str(s)) //'hello world'
 print(str('hello '+x)) //error
 ```
 
-This is akin to _casting_ in procedural languages. When using _int_ or _str_ we are casting an arithmetic expression into a concrete value--or issuing an error when it's not possible.
-
 In the case of real numbers, this is often not necessary as the arithmetics system will take care of that by itself.
 
 ```
 x=1+2
 print(x) //3.0
 ```
-
-Constraint Arithmetics
----
-
-Cosmos is one of the few existing languages to have CLP as the default arithmetic system.
-
-```
-$ cosmos -i
-> x=1+y
-| x = 1+y
-> x=num(1+y)
-| x = _124
-| y = _123
-> x>5
-| x > 5
-```
-
-_Why?_
-
-As this is a rather unique decision, we should probably explain.
-
-A regular language would have _x>5_ or _y+1_ simply fail. In those cases, it doesn't know the value of x or y. It wouldn't then be able to solve those equations.
-
-As a logic language, they're simply taken as true until proven wrong. It's the same for equality, e.g. x=y would also give an error in a regular language. A logic language has _constraints_ that are solved when needed.
-
-This is commonly called Constraint Logic Programming (CLP). Cosmos has CLP for Reals[1] as its default arithmetic.[2] This also means that it uses floating-point numbers.
-
-There are other known systems. However, they would not work well as the default arithmetics. CLP(FD) is limited to integers which would mean users couldn't use floating-point numbers at all.
-
-As the default arithmetics, we wanted a system that would, (1) work under normal circumnstances, at the least, and (2) not be limited to that; if possible, explore and make use of logic programming. If it weren't possible to use numbers with decimals, it would clearly not work under the circumnstances in which procedural arithmetics do, as they do use them, thus breaking (1).
-
-However, one can use other systems by calling the host language, and using a system from them. Furthermore, the current system may be changed by modifying _core.pl_.
-
-[1] As far as we know, CLP for Reals goes back to Prolog III. See http://prolog-heritage.org/en/ph30.html.
-
-[2] It should be rather be asked why a logic language would _not_ use CLP and instead present a classical, procedural system as the default one! Even though Prolog III has it, see [1]. It's practically asking users to make incorrect programs, logically speaking.
 
 ### 2B. Relations
 
@@ -482,7 +473,8 @@ Logically speaking, this lets us represents all kinds of statements in the form,
 
 Which are common in logic and show up in practical programming.
 
-```If it's raining, then someone will bring an umbrella.
+```
+If it's raining, then someone will bring an umbrella.
 If someone is a human, they're mortal. (aka All humans are mortals)
 It's not raining.
 ```
@@ -542,11 +534,11 @@ _Logical interpretation_
 
 You may think of an if-statement as equivalent to,
 
-if(A) B else C; <==> (A and B) or (not A and C) 
+`if(A) B else C; <==> (A and B) or (not A and C)` 
 
 An if-statement without else is,
 
-if(A) B; <==> (not A) or B
+`if(A) B; <==> (not A) or B`
 
 Though this may not be its exact implementation.
 
