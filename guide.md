@@ -228,21 +228,27 @@ print(str(s)) //'hello world'
 print(str('hello '+x)) //error
 ```
 
-In the case of real numbers, this is often not necessary as the arithmetics system will take care of that by itself.
+It's often not necessary to cast a number as the arithmetics system will take care of that by itself. Therefore, the user should only worry about it on corner cases.
 
 ```
 x=1+2
 print(x) //3.0
 ```
 
+_How is this different from casting in other languages?_
+
+Casting on Cosmos will,
+
+1. Properly instantiate a variable from an equation to an atomic value, if necessary,
+2. If that isn't possible, issue an error,
+3. In the case of _int_, it'll also convert the variable to an integer, even it's a floating-point number.
+
 ### 2B. Relations
 
 What is a relation?
 ---
 
-Cosmos™ is one of the few remaining _logic programming languages_. It's no surprise therefore that there's some connection.
-
-Logic itself concerns with statements that may be _true_ or _false_, such as,
+Logic concerns with statements that may be _true_ or _false_, such as,
 
 ```
 x equals 2
@@ -262,7 +268,9 @@ rain().
 
 The relationship in _double(2, 4)_ is _double_, which we defined beforehand. Naturally, this statement is true.
 
-Out of those, _=_ is distinguishable enough that it doesn't need to be in logic notation. Generally, arithmetics stay in arithmetic notation.
+Out of those, equality and arithmetics do not need to be in logic notation. Generally, you write statements involving arithmetics in arithmetic notation.
+
+As it deals with logic, statements and relations, Cosmos™ might be considered a _logic programming language_.
 
 Logic and function notation
 ---
