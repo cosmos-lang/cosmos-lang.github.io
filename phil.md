@@ -84,21 +84,4 @@ These precepts may of course sometimes clash. Cosmos may choose to explore a par
 
 It's not always so, though. You may note a lot of the time features simply fit and go well together. This is ideal.
 
-Why C-style declarations?
----
-
-Nowadays, many languages opt for a peculiar style of declaration.
-
-`let x:Integer=2`
-
-This is very unlike ours.
-
-`Integer x=2`
-
-This is also a case of applying the precepts.
-
-This is a case where both styles rank equal on familiarity. Any of them could be said to be familiar enough to a programmer by now.
-
-However, there's at least **one** extra keyword and more syntax in the former. It's more cluttered for reasons that arguably aren't worth it.
-
-The second is simpler syntactically and semantic-wise. While syntax is always a matter of opinion, it's definitely less minimalist in our interpretation.
+If you want to, you may look at our [rationale](/phil2.md) for several features.
