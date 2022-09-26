@@ -153,23 +153,36 @@ y=2
 
 ... is the same as ...
 
-`x=1 and y=2`
+```
+x=1 and y=2
+```
 
 Data types
 --
 
 Two basic types of data we've seen so far are _Number_ and _String_.
 
-Number includes 1, 2 and 2.5.
+_Number_ includes 1, 2 and 2.5.
+
+_String_ includes 'hello world' and "2".
 
 Unlike numbers, strings refer to a piece of text surrounded by double or single quotation in code. 
 
-String includes 'hello world' and "2".
-
-Remember that 2 is a _Number_ but '2' is a _String_.
+`2` is a number but `'2'` is a string.
 
 Comments
 ---
+
+Comments are text that gets ignored by the language. They may be single-line `//` or multi-line `/* ... */`.
+
+```javascript
+//this program prints hello world
+/*
+	this program
+	prints hello world
+*/
+print('hello world')
+```
 
 Arithmetics
 ---
@@ -453,8 +466,7 @@ The problem with this is that even correct logical problems may fall into an inf
 
 2. Performance
 
-<!--The other issue happens when you try to make a program.-->
-
+The other issue is that you may need to be wary of the procedural evaluation of a program when making a program that needs good performance. The logic aspect of the language may trick into thinking you don't need to pay attention to the procedural. However, the order in which the statements are evaluated matters in a real program.
 
 A Counterpoint
 ---
@@ -463,7 +475,7 @@ A possible counterpoint is that-- every language has the same problem, that is, 
 
 Couple that with the fact this occurs when you're doing recursion. Generally, if your program relies on a relation calling itself it's pretty obvious that it's doing so, and you have a hint that you should be looking out for such things.
 
-The second point is a result of combining a query solver with a programming language. If you simply want the solver to answer a query, does it matter if it takes a few seconds (or less) longer? If you want to use it as a fast programming language, shouldn't
+The second point is a result of combining a query solver with a programming language. If you simply want the solver to answer a query, does it matter if it takes a few seconds (or less) longer?
 
 The programmer then wants to instead use it as a blazing fast programming language, while at the same time expecting it to be fast without doing any work on optimizing it- which is not how it works in any language. 
 
@@ -479,6 +491,7 @@ Adding to our repertoire, we have _if_ and _not_.
 Logically speaking, this lets us represents all kinds of statements in the form,
 
 `If X, then Y.`
+
 `not X.`
 
 Which are common in logic and show up in practical programming.
