@@ -36,7 +36,7 @@ See the [Download](/download.html) section.
 Space
 --
 
-Not sure where to start? You may use the [Space](/space/index.html) framework to build graphical applications.
+Not sure where to start? You may use the [Space](/space/space.html) framework to build graphical applications.
 
 Philosophy
 --
