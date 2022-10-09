@@ -26,14 +26,17 @@ See below.
 Documentation
 --
 
-See the [Quickstart](/quickstart.html) or the full [Guide](/guide.html)*.
-
-The guide is meant to be more comprehensive and eventually provide a full documentation of the language. It may still need some proof-reading. The Quickstart is a quicker intro that assumes you have prior experience with procedural or functional languages.
+See the [Quickstart](/quickstart.html) for a quick intro or the currently in-development [Guide](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki) in the Wikia.
 
 Download
 --
 
 See the [Download](/download.html) section.
+
+Space
+--
+
+Not sure where to start? You may use the [Space](/space/index.html) framework to build graphical applications.
 
 Philosophy
 --
@@ -47,4 +50,3 @@ Other
 
 - [A few more notes (Quickstart 2.0)](/quickstart2.html)
 
-- [t](/phil) [t](/phil.html) [t](/phil.md)
