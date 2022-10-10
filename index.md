@@ -38,13 +38,10 @@ Space
 
 Not sure where to start? You may use the [Space](/space/space.html) framework to build graphical applications.
 
-Philosophy
+Drafts
 --
 
-See the language's [philosophy](/phil.html).
-
-Other
---
+- The language's [philosophy](/phil.html).
 
 - [Comparison to Prolog, etc.](/comp.html)
 
