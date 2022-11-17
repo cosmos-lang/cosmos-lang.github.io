@@ -340,7 +340,7 @@ while(x<6)
 print(x)//6
 ```
 
-Cosmos is a paradigm-neutral language. A procedural style of programming is still possible as long as the result is a pure relation or function. Procedural code is invariably self-contained and uses explicit keywords. Here _init x=1_ declares that the initial value of _x_ is 1 and _next x_ refers to the next value within the loop-_print_ of course is not pure.
+Cosmos is a paradigm-neutral language. A procedural style of programming is still possible as long as the result is a pure relation or function. Procedural code is invariably self-contained and uses explicit keywords. Here _init x=1_ declares that the initial value of _x_ is 1 and _next x_ refers to the next value within the loop-`print` of course is not pure.
 
 Impure operators
 ---
