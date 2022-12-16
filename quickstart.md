@@ -309,11 +309,9 @@ rel main(x)
 		x=2
 ```
 
-The condition this time is p(x). How do we negate an arbitrary relation like p(x)? All the while keeping the code logically pure?
+Operators that use negation like _not_, _if_ or _while_ are more complicated than they seem on the surface. The statement _p(x)_ may run twice or have its evaluation be delayed in order to ensure the code is sound. The reader may look _negation-by-failure_ to see the problems of a naive implementation. Still, the result should be as expected.
 
-The operators `not/if/while` are more complicated than they seem on the surface. Still, the result should be as expected. In order to ensure it's sound, _p(x)_ may be called twice or delayed. In the worst case, `x=1` might be executed before `p(x)`.
-
-This can always be turned off by making it a function,
+Most of this can be turned off by making it into a function,
 
 ```
 fun main(x)
@@ -326,9 +324,13 @@ fun main(x)
 When encased in a function, _if_ behaves as an imperative conditional. It will not do any _backtracking_ or _non-determinism_.
 
 As a principle, code that uses `rel` should behave like a pure relation and code using `fun` like a regular function as in functional or procedural programming.
- 
+
 while
 ---
+
+_"Almost, but not quite, entirely unlike imperative programming."_
+
+Pseudo-imperative programming in Cosmos is almost, but not quite, entirely unlike imperative programming. The programmer may make a _while_ expressions and use the result to make a pure relation or function.
 
 This is an example of a while-stm that writes numbers from 1 to 6.
 
@@ -340,7 +342,7 @@ while(x<6)
 print(x)//6
 ```
 
-Cosmos is a paradigm-neutral language. A procedural style of programming is still possible as long as the result is a pure relation or function. Procedural code is invariably self-contained and uses explicit keywords. Here _init x=1_ declares that the initial value of _x_ is 1 and _next x_ refers to the next value within the loop-`print` of course is not pure.
+Cosmos is a paradigm-neutral language. A procedural style of programming is still possible as long as the result is a pure relation or function. Procedural code tends to be self-contained and uses explicit keywords. Here _init x=1_ declares that the initial value of _x_ is 1 and _next x_ refers to the value of _x_ in the next loop-`print` of course is not pure.
 
 Impure operators
 ---
