@@ -309,9 +309,9 @@ rel main(x)
 		x=2
 ```
 
-Operators that use negation like _not_, _if_ or _while_ are more complicated than they seem on the surface. The statement _p(x)_ may run twice or have its evaluation be delayed in order to ensure the code is sound. The reader may look _negation-by-failure_ to see the problems of a naive implementation. Still, the result should be as expected.
+Operators that use negation like _not_, _if_ or _while_ are more complicated than they seem on the surface. The statement _p(x)_ may run twice or have its evaluation be delayed in order to ensure the code is sound. The reader may look _negation-by-failure_ to see the issues with a naive implementation of negation in a logic language. Still, the result should be as expected.
 
-Most of this can be turned off by making it into a function,
+Most relational behavior can be turned off by making it into a function,
 
 ```
 fun main(x)
@@ -321,7 +321,7 @@ fun main(x)
 		x=2
 ```
 
-When encased in a function, _if_ behaves as an imperative conditional. It will not do any _backtracking_ or _non-determinism_.
+When encased in a function, _if_ behaves like an imperative conditional. It will not do anything unexpected like _backtracking_ or _non-determinism_.
 
 As a principle, code that uses `rel` should behave like a pure relation and code using `fun` like a regular function as in functional or procedural programming.
 
