@@ -347,7 +347,7 @@ Cosmos is a paradigm-neutral language. A procedural style of programming is stil
 Impure operators
 ---
 
-The addition of function and relation modes is meant to be an improvement over Prolog's _negation-by-failure_. By comparison, standard-compliant Prolog deprecates usage of the `not` keyword at all and many logical operators are by default not pure. This makes it more-or-less difficult to try out logic programming with pure relations at all.
+The addition of function and relation modes is meant to be an improvement over Prolog's _negation-by-failure_. By comparison, standard-compliant Prolog deprecates usage of the `not` keyword at all and many logical operators are by default not pure. This makes it more-or-less difficult to try out logic programming with pure relations.
 
 Though we still provide a few non-pure operators that can be used anywhere like _once_.
 
