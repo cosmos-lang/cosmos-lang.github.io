@@ -2,86 +2,40 @@
 Why Cosmos?
 ---
 
-Why a new language? What can it be used for? This tends to be a common question for any new language.
+__It's simple__
 
-__As a scripting language__
+Cosmos is simple to use. It's meant to allow for code as simple as `x=2` or `print('hello world')`.
 
-Cosmos takes inspiration from many languages, specially scripting ones. The syntax compares well to common scripting languages.
+Cosmos is a general-purpose language that focuses on high-level scripting.
 
-It's a language that's very readable, simple and concise.
+__Multiple styles__
 
-Cosmos is a good general-purpose _scripting language_. It fares well for scripts, prototyping or high-level applications.
+Cosmos takes inspiration from many languages and allows for a variety of styles which includes features from,
 
-Many languages nowadays are becoming overly complex and opinionated. Cosmos strives to go back to what scripting languages were known for. It's simple and flexible allowing for many styles of programming.
+- Functional programming,
+- Logic programming,
+- Prototypal and procedural programming,
 
-__As a functional language__
+The user may adopt a functional, logic or even [procedural](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Pseudo-imperative-programming) style.
 
-It's a goal of us to ensure Cosmos can be used as a legitimate _functional language_. It's provided with constructs like closures and a focus on immutability.
+It's _not_ an opinionated language by any means-which many languages nowadays are becoming, and instead lets the user write extremely non-restricted code. A programmer might make use of mode and type declarations. If they don't, variables are local-by-default and the type is inferred by the language.
 
-__As a logic language__
+__Pure logic programming__
 
-Cosmos is a legitimate _logic programming language_. It's our view of what modern day Prolog would look like.
+Perhaps its most novel feature is that Cosmos is a legitimate _logic programming language_. It's our view of what modern day logic programming with a redone syntax would look like.
 
-It's entirely possible to use it as a regular language, however, and use logic features such as non-determinism only when necessary.
+In particular, it focuses on _pure logic programming_. If the user makes a relation, it's pretty much guaranteed to be a pure relation (as cKanren, etc.).
 
-Cosmos is designed so that even if you use write code with an entirely procedural mindset, it will have a functional and logic meaning.
+If they don't, it's still a pure function or simply a procedure.
 
-__An academic language?__
+A lot of it is experimental or taken from other logic programming languages (Prolog II, III, etc).
 
-Declarative languages are often used academically.
+__It's not Prolog__
 
-Cosmos covers all main paradigms and even advanced concepts such as functors while benefitting from a more recognizable syntax.
+It must be emphasized that Cosmos is _not_ literally Prolog!
 
-It's not Prolog
---
+A typical Prolog implementation must follow certain conventions for backward-compatibility. However, there are certain limitations this brings. It means, for example, that _they cannot have a sound 'not' operator_. It's not a particularly minimalist language either.
 
-As a _logic programming language_ based on Prolog, Cosmos can be easily compared to Prolog. It's not Prolog, of course!
+As a new language, we're not bound by any such limitations. A lot of syntax decisions such as making use of whitespace, using modern operators and naming such as `!=`, `>=` and `concat` are possible because of this.
 
-Many features of ancient, classic Prolog (such as variables needing to be uppercase) did arguably not age well and are not common today.
-
-Overall, we did not adopt those.
-
-Philosophy
-----
-
-The philosophy of the Cosmos programming language can be summed in a few precepts, which the language was designed around,
-
-- Experimental
-- Familiarity
-- Minimalism
-- Smooth
-
-Of course, those precepts are weighted against each other.
-
-Experimental vs Familiarity
---
-
-Although Cosmos is ultimately an exploratory language, it uses common syntax naming and conventions when possible.
-
-It's accurate to say that _we do not deviate from the norm if we don't have to_.
-
-So as to be as user-friendly as possible, it uses a procedural syntax with all the common operators you'd expect from one--unless there's a reason not to. It'll not stop us from supporting logic or functional programming.
-
-If it was merely another imperative scripting language, there would be no reason to make it. Plenty of those already exist. On the other hand, functional languages that still support procedural-style programming and syntax are fewer. Furthermore, we simply like the syntax. 
-
-Minimalism vs Smoothness
---
-
-"Make it simple, but not simpler." - Vonn Neumann
-
-The above quote quite describes a minimalist philosophy.
-
-Adopting common syntax sugar is an example of smoothness. It makes our language smooth to program in, which is important, after all. However, simply adding a new operator or syntax for every function there is isn't necessary. It makes the language less readable. 
-
-At the least, they don't follow the same philosophy as ours.
-
-Basic function or relation syntax exists so that we don't need new operators for everything. 
-
-Weighting the Precepts
---
-
-These precepts may of course sometimes clash. Cosmos may choose to explore a paradigm that's not all that common, which may clash against familiarity. We don't want to make our language so minimal that it is unusable-- thus we weight it against the smoothness and experimental factors.
-
-It's not always so, though. You may note a lot of the time features simply fit and go well together. This is ideal.
-
-If you want to, you may look at our [rationale](/phil2.md) for several features.
+You may see [this](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Comparison) for a better comparison.
