@@ -40,4 +40,4 @@ As a new language, we're not bound by any such limitations. A lot of syntax deci
 
 You may see [this](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Comparison) for a better comparison.
 
-A lot of inspiration is also drawn from functional and [prototypal languages](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Comparison:-Prototypal-Languages).
+A lot of inspiration is also drawn from functional and [prototypal languages](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Comparison:-Prototypal-Languages). Part of the motivation for Cosmos involved starting from a typical scripting language and still wanting to explore concepts from different paradigms.
