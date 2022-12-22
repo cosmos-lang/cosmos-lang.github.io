@@ -39,3 +39,5 @@ A typical Prolog implementation must follow certain conventions for backward-com
 As a new language, we're not bound by any such limitations. A lot of syntax decisions such as making use of whitespace, using modern operators and naming such as `!=`, `>=` and `concat` are possible because of this.
 
 You may see [this](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Comparison) for a better comparison.
+
+A lot of inspiration is also drawn from functional and [prototypal languages](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Comparison:-Prototypal-Languages).
