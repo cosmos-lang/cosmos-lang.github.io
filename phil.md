@@ -40,4 +40,10 @@ As a new language, we're not bound by any such limitations. A lot of syntax deci
 
 You may see [this](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Comparison) for a better comparison.
 
-A lot of inspiration is also drawn from functional and [prototypal languages](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Comparison:-Prototypal-Languages). Part of the motivation for Cosmos involved starting from a typical scripting language and still wanting to explore concepts from different paradigms.
+__Why prototypal languages__
+
+A lot of inspiration is also drawn from functional and [prototypal languages](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Comparison:-Prototypal-Languages).
+
+Scripting languages, in particular ones based on prototypes, were some of the first to adopt and introduce to the mainstream declarative concepts such as first-class functions (now relations) and closures. They're very simple and the basic idea of using closures with dictionary data types is simple to use and implement.
+
+In that sense, this is a "what if they went even further?" Part of the motivation and idea for Cosmos was starting off with a more typical scripting language and still wanting to explore concepts from different paradigms. 
