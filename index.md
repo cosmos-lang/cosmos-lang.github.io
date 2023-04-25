@@ -43,6 +43,6 @@ Other
 
 - [Introducing Temporal Logic in Cosmos](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Temporal-Logic-in-Cosmos)
 
-- [A rough comparison with Prolog, etc.](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Download)
+- [A rough comparison with Prolog, etc.](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Comparison:-Overall)
 
 
