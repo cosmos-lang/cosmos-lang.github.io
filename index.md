@@ -1,6 +1,6 @@
 ## Introduction
 
-Cosmos is a modern logic scripting language with a simple syntax.
+Cosmos is a modern logic scripting language.
 
 ```javascript
 rel main()
@@ -8,7 +8,7 @@ rel main()
     io.writeln("hello, "+x+'!')
 ```
 
-Cosmos combines features from functional (including type checking), object-oriented and even logic programming.
+Cosmos combines features from functional (including type checking), object-oriented and even logic programming with a simple syntax.
 
 Relational programming
 --
@@ -31,19 +31,18 @@ See the [Quickstart](/quickstart.html) for a quick intro or the currently in-dev
 Download
 --
 
-See the [Download](/download.html) section.
+See the [Download](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Download) section.
 
 Space
 --
 
-Not sure where to start? You may use the [Space](/space/space.html) framework to build graphical applications.
+[Space](/space/space.html) is an in-development framework to build graphical applications.
 
-Drafts
+Other
 --
 
-- The language's [philosophy](/phil.html).
+- [Introducing Temporal Logic in Cosmos](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Temporal-Logic-in-Cosmos)
 
-- [Comparison to Prolog, etc.](/comp.html)
+- [A rough comparison with Prolog, etc.](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Download)
 
-- [A few more notes (Quickstart 2.0)](/quickstart2.html)
 
