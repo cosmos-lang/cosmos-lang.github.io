@@ -314,6 +314,9 @@ print(x)//6
 ```
 
 Cosmos is a paradigm-neutral language. A procedural style of programming is still possible as long as the result is a pure relation or function. Procedural code tends to be self-contained and uses explicit keywords. Here _init x=1_ declares that the initial value of _x_ is 1 and _next x_ refers to the value of _x_ in the next loop.
+ 
+for
+---
 
 A generic for is also provided.
 
@@ -323,7 +326,7 @@ for(x in l)
 	print(x)
 ```
 
-This is not logic or declarative programming only in that we use a `print` statement. However, these expressions can easily be made into pure code.
+This is not declarative only in that we use a `print` statement. However, these expressions can easily be made into pure code.
 
 ```javascript
 for(x in l)
@@ -332,10 +335,9 @@ for(x in l)
 
 The above will check whether _all_ x in a given collection is higher than 1.
 
-Negation is complicated
+An Overview on Modes
 ---
-
-Occasionally, a conditional may issue an error.
+Occasionally, an operator like _not_, _if_ or _while_ may issue an error.
 
 ```js
 rel main(x)
@@ -345,9 +347,13 @@ rel main(x)
 		x=2
 ```
 
-Operators like _not_, _if_ or _while_ are more complicated than they seem on the surface when applied to relational programming. Therefore, an error is issued if the compiler isn't ready to interpret such instructions.
+```
+complex condition for if-else
+```
 
-This can be circumnvented by making it into a function,
+This may happen if the compiler's not able to _main_ into a sound relation.
+
+This can be circumnvented by using the function mode,
 
 ```
 fun main(x)
@@ -359,4 +365,6 @@ fun main(x)
 
 When encased in a function, _if_ behaves like an imperative conditional. It will not do anything unexpected like _backtracking_ or _non-determinism_.
 
-The addition of function and relation modes improves in some way Prolog's _negation-by-failure_. You're free to program in a logic paradigm by using the `rel` keyword--and the compiler will warn you when such operators cannot produce a correct result-- or you can use a `function` or `fun` keyword so that the code behaves more closely to functional or procedural programming.
+The function mode (`function` or `fun`) uses a straightforward version of such operators. This effectively lets you fall back into functional or procedural programming.
+
+The relation mode (`rel`) uses a relational version of the operators, or issue an error if it cannot find one.
