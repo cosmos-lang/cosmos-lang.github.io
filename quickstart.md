@@ -296,35 +296,6 @@ Or,
 (s = 'a' and x = 0) or (s != 'a' and x = 2)
 ```
  
-Negation is complicated
----
-
-Let's see an example of a more complex condition.
-
-```js
-rel main(x)
-	if(p(x))
-		x=1
-	else
-		x=2
-```
-
-Operators that use negation like _not_, _if_ or _while_ are more complicated than they seem on the surface. The statement _p(x)_ may run twice or have its evaluation be delayed in order to ensure the code is sound. The reader may look _negation-by-failure_ to see the issues with a naive implementation of negation in a logic language. Still, the result should be as expected.
-
-Most relational behavior can be turned off by making it into a function,
-
-```
-fun main(x)
-	if(p(x))
-		x=1
-	else
-		x=2
-```
-
-When encased in a function, _if_ behaves like an imperative conditional. It will not do anything unexpected like _backtracking_ or _non-determinism_.
-
-As a principle, code that uses `rel` should behave like a pure relation and code using `fun` like a regular function as in functional or procedural programming.
-
 while
 ---
 
@@ -342,16 +313,50 @@ while(x<6)
 print(x)//6
 ```
 
-Cosmos is a paradigm-neutral language. A procedural style of programming is still possible as long as the result is a pure relation or function. Procedural code tends to be self-contained and uses explicit keywords. Here _init x=1_ declares that the initial value of _x_ is 1 and _next x_ refers to the value of _x_ in the next loop-`print` of course is not pure.
+Cosmos is a paradigm-neutral language. A procedural style of programming is still possible as long as the result is a pure relation or function. Procedural code tends to be self-contained and uses explicit keywords. Here _init x=1_ declares that the initial value of _x_ is 1 and _next x_ refers to the value of _x_ in the next loop.
 
-Impure operators
+A generic for is also provided.
+
+```javascript
+l=[1,2]
+for(x in l)
+	print(x)
+```
+
+This is not logic or declarative programming only in that we use a `print` statement. However, these expressions can easily be made into pure code.
+
+```javascript
+for(x in l)
+	x>1
+```
+
+The above will check whether _all_ x in a given collection is higher than 1.
+
+Negation is complicated
 ---
 
-The addition of function and relation modes is meant to be an improvement over Prolog's _negation-by-failure_. By comparison, standard-compliant Prolog deprecates usage of the `not` keyword at all and many logical operators are by default not pure. This makes it more-or-less difficult to try out logic programming with pure relations.
+Occasionally, a conditional may issue an error.
 
-Though we still provide a few non-pure operators that can be used anywhere like _once_.
+```js
+rel main(x)
+	if(p(x))
+		x=1
+	else
+		x=2
+```
+
+Operators like _not_, _if_ or _while_ are more complicated than they seem on the surface when applied to relational programming. Therefore, an error is issued if the compiler isn't ready to interpret such instructions.
+
+This can be circumnvented by making it into a function,
 
 ```
-//this will only select the first answer given by p(x)
-once p(x)
+fun main(x)
+	if(p(x))
+		x=1
+	else
+		x=2
 ```
+
+When encased in a function, _if_ behaves like an imperative conditional. It will not do anything unexpected like _backtracking_ or _non-determinism_.
+
+The addition of function and relation modes improves in some way Prolog's _negation-by-failure_. You're free to program in a logic paradigm by using the `rel` keyword--and the compiler will warn you when such operators cannot produce a correct result-- or you can use a `function` or `fun` keyword so that the code behaves more closely to functional or procedural programming.
