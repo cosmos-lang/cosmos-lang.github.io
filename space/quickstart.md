@@ -128,6 +128,4 @@ If the user wishes for non-declarative state, they can use the _mutable_ or _Var
 
 ## About
 
-You'll see that there are still some issues, particularly on the language parser. The obvious answer is that you should contribute to the project, i.e. sending a pastebin or generally making tools for the language. There's no other answer we can possibly give. The code is on simple .co files that need to be modified for correctness before we make more syntax sugar, etc. 
-
-If you're wondering about possible issues, just go ahead and become a contributor. It's win-win. This page *might* very likely be here merely to ask this, although the code above will likely work anyway.
+Cosmos and Space is open-source. If you feel like it, you can contribute to the project. It's given without any warranty.
