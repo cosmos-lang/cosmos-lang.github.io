@@ -74,21 +74,20 @@ Let's go a bit further and accept input. If the user presses a key, this changes
 world={x=10 and dir='right'}
 img=sp.loadImage('b1.png')
 sp.start(500,{	
-	rel mouseup(x,y,s,s)
+	rel mouseup(x,y,state,state)
 		print([x,y])
-		//s2=s
-	rel keypressed(key,s,s2)
+	rel keypressed(key,initialState,followupState)
 		print(key)
 		if(key='right')
-			set(s,'dir',key,s2)
+			set(initialState,'dir',key,followupState)
 			true
 		elseif(key='left')
-			set(s,'dir',key,s2)
+			set(initialState,'dir',key,followupState)
 		elseif(key='escape')
 			logic.halt()
 		else
 			true
-			s2=s
+			followupState=initialState
 	rel update(w,w2)
 		w.x=x
 		w.dir=dir
@@ -110,21 +109,21 @@ sp.start(500,{
 
 We now add other callback relations and draw an image _img_ instead of a rectangle.
 
-The callback _keypressed(key,s,s2)_ gives the key, which we use to update the state (note that leaving it as _mouseup(x,y,s,s)_ is the same as asserting _s2=s_, i.e. not updating the state). Furthermore, the program ends if the user presses the escape key.
+The callback _keypressed(key,initialState,followupState)_ gives the key, which we use to update the state (note that by leaving _mouseup_ as _mouseup(x,y,state,state)_ we're asserting through the parameters that state stays the same, i.e. we're not updating the state of _mouseup_). Furthermore, the program ends if the user presses the escape key.
 
 We use a table as the state, with _{x=10 and dir='right'}_ being the initial state.
 
 It's important not to load the image in the _update_ relation, as it'll be called multiple times.
 
-(Be sure to include an image _b1.png_ in the folder, of course.)
+Be sure to include an image _b1.png_ in the folder, of course.
 
 ## World
 
-A good way to represent our game world (or simulation, UI, etc.) is by using a table.
+A good way to represent our game world (or the world of our simulation, UI, etc.) is by using a table.
 
 We then simply pass it to update and other callbacks.
 
-If the user wishes for non-declarative state, they can use the _mutable_ or _Var_ libraries, though we won't cover this in this tutorial. It's then possible to hold global variables and have a more traditional loop.
+If the user wishes for non-declarative state, they can use the _mutable_ libraries, though we won't cover this in this tutorial. It's then possible to hold global variables and have a more traditional loop.
 
 ## About
 
