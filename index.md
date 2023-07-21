@@ -41,8 +41,10 @@ Space
 Other
 --
 
-- [Introducing Temporal Logic in Cosmos](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Temporal-Logic-in-Cosmos)
+[The Project Page](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/The-Cosmos-Initiative)
 
-- [A rough comparison with Prolog, etc.](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Comparison:-Overall)
+- Introducing [generic iterators](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Pseudo-imperative-programming)
+
+- [Introducing Temporal Logic in Cosmos](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Temporal-Logic-in-Cosmos)
 
 
