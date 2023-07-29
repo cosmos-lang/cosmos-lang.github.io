@@ -361,10 +361,9 @@ fun main(x)
 		x=2
 ```
 
-If the compiler is not not able to make a sound relation, it'll warn you of that. You may still make _main_ into a sound function.
+If the if-else cannot be made into a sound relation, the compiler will warn you of that. You may still turn it into a sound function.
 
 When encased in a function, _if_ behaves like an imperative conditional. It will not do anything unexpected like _backtracking_ or _non-determinism_.
 
-The function mode (`function` or `fun`) uses a straightforward version of such operators. This effectively lets you fall back into functional or procedural programming.
+The relation mode (`rel`) uses a relational version of the operators, or issue an error if it cannot find one. The function mode (`function` or `fun`) uses a straightforward version of such operators. This effectively lets you fall back into functional or procedural programming.
 
-The relation mode (`rel`) uses a relational version of the operators, or issue an error if it cannot find one.
