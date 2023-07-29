@@ -38,10 +38,12 @@ Space
 
 [Space](/space/space.html) is an in-development framework to build graphical applications.
 
-Other
+News
 --
 
 [The Project Page](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/The-Cosmos-Initiative)
+
+- Expanding [negation](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/v0.6-%E2%80%90-Constructive-Negation/)
 
 - Introducing [generic iterators](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Pseudo-imperative-programming)
 
