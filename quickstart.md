@@ -101,25 +101,25 @@ rel p(x)
 Functors
 ----
 
-Functors are composite data.
-```
+```javascript
 functor(F, Functor) //declares an object for creating functors
 x = F(1, 2) //x is assigned to a functor F composed by the values 1 and 2
 x = F(1, a) //uses pattern matching to match F(1, 2) against F(1, a)
 print(a) //2
 ```
+
 The special relation _functor_ is used to declare F as an object for making functors.
 
 Lists are syntax sugar for the functor Cons. Here are two ways to define a list:
 
-```
+```javascript
 l = [1, 2]
 l = Cons(1, Cons(2, Cons))
 ```
 
 Relations such as _first_, _map_ and _filter_ can be used to manipulate lists.
 
-```
+```javascript
 l = [1,2,3]
 list.first(l, head) //head is 1
 list.rest(l, tail) //tail is [2, 3]
@@ -133,7 +133,7 @@ Immutability
 
 Variables are immutable. Instead of modifying a value we create a new one.
 
-```
+```javascript
 l2 = list.push(l, 55) //instead of modifying l, we create a new variable l2
 io.writeln(l)  //[1, 2, 3]
 io.writeln(l2) //[1, 2, 3, 55]
@@ -351,8 +351,6 @@ rel main(x)
 complex condition for if-else
 ```
 
-This may happen if the compiler's not able to _main_ into a sound relation.
-
 This can be circumnvented by using the function mode,
 
 ```
@@ -362,6 +360,8 @@ fun main(x)
 	else
 		x=2
 ```
+
+If the compiler is not not able to make a sound relation, it'll warn you of that. You may still make _main_ into a sound function.
 
 When encased in a function, _if_ behaves like an imperative conditional. It will not do anything unexpected like _backtracking_ or _non-determinism_.
 
