@@ -45,7 +45,7 @@ News
 
 - Expanding [negation](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/v0.6-%E2%80%90-Constructive-Negation/)
 
-- Introducing [generic iterators](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Pseudo-imperative-programming)
+- Introducing [generic iterators](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Pseudo-imperative-programming#generic-for)
 
 - [Introducing Temporal Logic in Cosmos](https://github.com/cosmos-lang/cosmos-lang.github.io/wiki/Temporal-Logic-in-Cosmos)
 
