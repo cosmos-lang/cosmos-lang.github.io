@@ -8,7 +8,7 @@ rel main()
     io.writeln("hello, "+x+'!')
 ```
 
-Cosmos combines features from functional (including type checking), object-oriented and even logic programming with a simple syntax.
+Cosmos combines features from functional, object-oriented and even logic programming with a simple syntax.
 
 Relational programming
 --
